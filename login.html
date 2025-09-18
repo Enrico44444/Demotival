@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Demotival</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <link rel="stylesheet" href="stylelogin.css" />
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  
+  <div class="floating-particles"></div>
+
+  <header class="navbar"> 
+    <a href="index.html" class="logo">Demotival</a>
+    <nav class="menu">
+      <a href="#">Roteiros</a>
+      <a href="cadastro.html">Criar conta</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <section class="card">
+      <h1>Fazer Login</h1>
+      <p class="subtitle">Entre na sua conta e continue sua jornada</p>
+      <form id="formLogin">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+          <input type="password" id="senha" placeholder="Senha" required />
+        </div>
+        <button type="submit" class="submit-btn">Entrar</button>
+      </form>
+      <p id="mensagem" class="message"></p>
+      <div class="signup-link">
+        <span>Não tem uma conta? </span>
+        <a href="cadastro.html">Criar conta</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="animacaoindex.js"></script>
+  <script src="secret.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
