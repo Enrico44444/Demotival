@@ -48,16 +48,16 @@ function createParticle(x, y) {
     }, 1500);
 }
 
-// Efeitos hover nos links
+// Efeitos hover nos links (otimizado)
 const links = document.querySelectorAll('a');
 links.forEach(link => {
     link.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(1.5)';
+        cursor.style.transform += ' scale(1.5)';
         cursor.style.backgroundColor = 'rgba(204, 51, 51, 0.2)';
     });
     
     link.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(1)';
+        cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
         cursor.style.backgroundColor = 'transparent';
     });
 });
@@ -89,10 +89,22 @@ function createFloatingParticles() {
 }
 createFloatingParticles();
 
-// Efeito parallax suave
-window.addEventListener('scroll', () => {
+// Efeito parallax suave (otimizado com throttle)
+let ticking = false;
+
+function updateParallax() {
     const scrolled = window.pageYOffset;
     const card = document.querySelector('.card');
-    const rate = scrolled * -0.5;
-    card.style.transform = `translateY(${rate}px)`;
+    if (card) {
+        const rate = scrolled * -0.2; // Reduzido de -0.5 para -0.2
+        card.style.transform = `translateY(${rate}px)`;
+    }
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+    }
 });
