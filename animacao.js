@@ -48,16 +48,19 @@ function createParticle(x, y) {
     }, 1500);
 }
 
-// Efeitos hover nos links (otimizado)
-const links = document.querySelectorAll('a');
+// Efeitos hover nos links e botões (CORRIGIDO)
+const links = document.querySelectorAll('a, button, .submit-btn, .cta-button');
 links.forEach(link => {
+    // Esconder cursor padrão
+    link.style.cursor = 'none';
+    
     link.addEventListener('mouseenter', () => {
-        cursor.style.transform += ' scale(1.5)';
+        cursor.style.transform = 'scale(1.5)';
         cursor.style.backgroundColor = 'rgba(204, 51, 51, 0.2)';
     });
     
     link.addEventListener('mouseleave', () => {
-        cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
+        cursor.style.transform = 'scale(1)';
         cursor.style.backgroundColor = 'transparent';
     });
 });
