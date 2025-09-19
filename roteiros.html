@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roteiros - Demotival</title>
+  <link rel="stylesheet" href="styleroteiros.css" />
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  
+  <div class="floating-particles"></div>
+
+  <header class="navbar"> 
+    <a href="index.html" class="logo">Demotival</a>
+    <nav class="menu">
+      <a href="roteiros.html">Roteiros</a>
+      <a href="cadastro.html">Criar conta</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <section class="card">
+      <h1>Escolha seu Roteiro</h1>
+      <p class="subtitle">Selecione um dos roteiros disponíveis e embarque em uma nova aventura</p>
+      
+      <div class="roteiros-grid">
+        <button class="roteiro-btn" onclick="lerRoteiro('alfa')">
+          <div class="roteiro-icon">🚀</div>
+          <h3>Alfa</h3>
+          <p>Descrição</p>
+        </button>
+        
+        <button class="roteiro-btn" onclick="lerRoteiro('beta')">
+          <div class="roteiro-icon">🏰</div>
+          <h3>Beta</h3>
+          <p>Descrição</p>
+        </button>
+        
+        <button class="roteiro-btn" onclick="lerRoteiro('delta')">
+          <div class="roteiro-icon">🌃</div>
+          <h3>Delta</h3>
+          <p>Descrição</p>
+        </button>
+        
+        <button class="roteiro-btn" onclick="lerRoteiro('gama')">
+          <div class="roteiro-icon">🌲</div>
+          <h3>Gama</h3>
+          <p>Descrição</p>
+        </button>
+        
+        <button class="roteiro-btn" onclick="lerRoteiro('kappa')">
+          <div class="roteiro-icon">🧟</div>
+          <h3>Kappa</h3>
+          <p>Descrição</p>
+        </button>
+        
+        <button class="roteiro-btn" onclick="lerRoteiro('zeta')">
+          <div class="roteiro-icon">🏴‍☠️</div>
+          <h3>Zeta</h3>
+          <p>Descrição</p>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="animacao.js"></script>
+  <script>
+    function lerRoteiro(roteiro) {
+      window.location.href = `lerroteiro.html?roteiro=${roteiro}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lendo Roteiro - Demotival</title>
+  <link rel="stylesheet" href="stylelerroteiro.css" />
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  
+  <div class="floating-particles"></div>
+
+  <header class="navbar"> 
+    <a href="index.html" class="logo">Demotival</a>
+    <nav class="menu">
+      <a href="roteiros.html">Roteiros</a>
+      <a href="cadastro.html">Criar conta</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <section class="card">
+      <div class="roteiro-header">
+        <button class="back-btn" onclick="voltarRoteiros()">← Voltar</button>
+        <div class="roteiro-info">
+          <div class="roteiro-icon-large" id="roteiroIcon">🚀</div>
+          <h1 id="roteiroTitulo">Carregando...</h1>
+          <p class="roteiro-description" id="roteiroDescricao">Preparando sua aventura...</p>
+        </div>
+      </div>
+
+      <div class="roteiro-content" id="roteiroConteudo">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Carregando roteiro...</p>
+        </div>
+      </div>
+
+      <div class="roteiro-navigation" style="display: none;">
+      </div>
+    </section>
+  </main>
+
+  <script src="animacao.js"></script>
+  <script src="roteirosdados.js"></script>
+  <script>
+    let roteiroAtual = null;
+
+    function voltarRoteiros() {
+      window.location.href = 'roteiros.html';
+    }
+
+    function carregarRoteiro() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const roteiroId = urlParams.get('roteiro');
+      
+      if (!roteiroId || !roteirosData[roteiroId]) {
+        document.getElementById('roteiroTitulo').textContent = 'Roteiro não encontrado';
+        document.getElementById('roteiroDescricao').textContent = 'O roteiro solicitado não existe.';
+        return;
+      }
+
+      roteiroAtual = roteirosData[roteiroId];
+
+      // Atualizar header
+      document.getElementById('roteiroIcon').textContent = roteiroAtual.icon;
+      document.getElementById('roteiroTitulo').textContent = roteiroAtual.titulo;
+      document.getElementById('roteiroDescricao').textContent = roteiroAtual.descricao;
+
+      // Simular carregamento
+      setTimeout(() => {
+        mostrarRoteiro();
+      }, 1500);
+    }
+
+    function mostrarRoteiro() {
+      const conteudo = document.getElementById('roteiroConteudo');
+      
+      conteudo.innerHTML = `
+        <div class="roteiro-texto fade-in">
+          <pre>${roteiroAtual.conteudo}</pre>
+        </div>
+      `;
+    }
+
+    // Carregar roteiro ao inicializar
+    document.addEventListener('DOMContentLoaded', carregarRoteiro);
+  </script>
+</body>
+</html>

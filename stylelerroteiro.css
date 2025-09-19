@@ -1,0 +1,413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Esconder cursor padrão em elementos interativos */
+a, button, .submit-btn, .cta-button, input, textarea {
+    cursor: none !important;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(-45deg, #0d0404, #1a0808, #120606, #200a0a);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Cursor personalizado */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cc3333;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    backface-visibility: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: #cc3333;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    will-change: transform;
+    backface-visibility: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Efeito de rastro de partículas */
+.particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: linear-gradient(45deg, #cc3333, #8b1f1f);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: particleFade 1s ease-out forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes particleFade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) translate(var(--random-x), var(--random-y));
+    }
+}
+
+.navbar {
+    background: rgba(80, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(204, 51, 51, 0.2);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(80, 20, 20, 0.98);
+    padding: 15px 40px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 28px;
+    color: #cc3333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #cc3333;
+    transition: width 0.3s ease;
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(204, 51, 51, 0.2));
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu a:hover::before {
+    opacity: 1;
+}
+
+.menu a:hover {
+    transform: translateY(-2px);
+    color: #cc3333;
+}
+
+.conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 120px 20px 40px;
+    position: relative;
+}
+
+/* Partículas flutuantes de fundo */
+.floating-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(204, 51, 51, 0.3);
+    border-radius: 50%;
+    animation: float 8s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.card {
+    background: rgba(20, 5, 5, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(204, 51, 51, 0.3);
+    max-width: 1000px;
+    width: 100%;
+    border-radius: 30px;
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #cc3333, #8b1f1f, #660000, #cc3333);
+    background-size: 300% 300%;
+    border-radius: 30px;
+    z-index: -1;
+    animation: borderGlow 4s ease infinite;
+    opacity: 0.6;
+}
+
+@keyframes borderGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Header do roteiro */
+.roteiro-header {
+    padding: 40px 50px 30px;
+    border-bottom: 1px solid rgba(204, 51, 51, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    background: rgba(204, 51, 51, 0.2);
+    border: 1px solid rgba(204, 51, 51, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(204, 51, 51, 0.4);
+    transform: translateX(-5px);
+}
+
+.roteiro-icon-large {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 20px rgba(204, 51, 51, 0.6));
+}
+
+.roteiro-header h1 {
+    color: #cc3333;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(204, 51, 51, 0.4);
+    animation: titleGlow 3s ease-in-out infinite alternate;
+    margin-bottom: 10px;
+}
+
+@keyframes titleGlow {
+    from { text-shadow: 0 0 20px rgba(204, 51, 51, 0.4); }
+    to { text-shadow: 0 0 40px rgba(204, 51, 51, 0.6), 0 0 60px rgba(204, 51, 51, 0.3); }
+}
+
+.roteiro-description {
+    font-size: 1.1rem;
+    color: rgba(230, 230, 230, 0.8);
+    line-height: 1.6;
+}
+
+/* Texto do roteiro */
+.roteiro-texto {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.roteiro-texto pre {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(230, 230, 230, 0.9);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(204, 51, 51, 0.2);
+}
+
+/* Navegação */
+.roteiro-navigation {
+    padding: 30px 50px;
+    border-top: 1px solid rgba(204, 51, 51, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.nav-btn {
+    background: linear-gradient(45deg, #cc3333, #8b1f1f);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.nav-btn:hover::before {
+    left: 100%;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(204, 51, 51, 0.4);
+}
+
+.nav-btn:disabled {
+    background: rgba(100, 100, 100, 0.3);
+    color: rgba(200, 200, 200, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.nav-btn:disabled::before {
+    display: none;
+}
+
+.page-info {
+    color: rgba(230, 230, 230, 0.8);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu {
+        gap: 20px;
+    }
+
+    .card {
+        margin: 20px;
+        max-width: 95%;
+    }
+
+    .roteiro-header {
+        padding: 30px 25px 20px;
+    }
+
+    .back-btn {
+        left: 15px;
+        top: 15px;
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+
+    .roteiro-header h1 {
+        font-size: 2rem;
+    }
+
+    .roteiro-content {
+        padding: 30px 25px;
+    }
+
+    .roteiro-navigation {
+        padding: 25px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
